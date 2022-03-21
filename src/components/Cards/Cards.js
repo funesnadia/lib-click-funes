@@ -1,13 +1,19 @@
 import React from "react";
-import './Cards.css'
+import './Cards.css';
+import ItemCount from "../ItemCount/ItemCount";
+
 export default function Cards(props) {
+    const {titulo, marca, precio, stock, initial, total} = props;
+    const onAdd = (qty) => {
+        alert(`Agregaste ${qty} productos`);
+        total(qty)
+    }
     return (
         <div className="card-estyle">
-            <h2>{props.titulo}</h2>
-            <p>Precio: $ {props.precio}</p>
-            <p>Marca: {props.marca}</p>  
-            <button className="button-style">Comprar</button>
-              
+            <h2>{titulo}</h2>
+            <p>Precio: $ {precio}</p>
+            <p>Marca: {marca}</p>
+            <ItemCount stock = {stock} initial = {initial} onAdd = {onAdd}/>              
         </div>
     
     );
