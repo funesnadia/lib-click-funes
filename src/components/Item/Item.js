@@ -1,9 +1,10 @@
 import React from "react";
-import './Cards.css';
+import './Item.css';
 import ItemCount from "../ItemCount/ItemCount";
 
-export default function Cards(props) {
-    const {titulo, marca, precio, stock, initial, total} = props;
+export default function Item ({data}) {
+    
+    const {titulo, marca, precio, stock, initial, total} = data;
     const onAdd = (qty) => {
         alert(`Agregaste ${qty} productos`);
         total(qty)
