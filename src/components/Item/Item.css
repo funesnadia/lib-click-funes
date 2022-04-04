@@ -6,10 +6,19 @@
   box-shadow: 1px 1px 5px #2e0ee42b;
   border-radius: 5px;
   padding: 10px;
-  color: blue;
+  color: black;
+  width: calc(33.333% - 45px);
+
 }
-div > button.button-style{
-    color: blue;
+div > div.img-style{
+  border: 1px solid #ababab;
+  box-shadow: 1px 1px 5px #2e0ee42b;
+  border-radius: 5px;
+  padding: 10px;
+}
+div > button.button-style > a{
+    text-decoration: none;
+    color: black;
     box-align:center;
 }
 

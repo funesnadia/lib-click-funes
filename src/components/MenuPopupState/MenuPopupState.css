@@ -1,0 +1,13 @@
+div > div > ul > li.submenu-style > a{
+    text-decoration: none; 
+    color: black;
+}
+
+div > div > button.submenu-style{
+    text-decoration: none; 
+    color: black;
+}
+
+.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list{
+    background-color: gray;
+}

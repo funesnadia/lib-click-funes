@@ -1,6 +1,6 @@
-.list-styte{
+.list-style{
     text-align:center; 
-    color: blue;
+    color: black;
     ; 
 }
 
@@ -9,13 +9,13 @@
     border: 1px solid #ababab;
     margin-top: 1%;
     margin-left: 1%;
-    box-shadow: 1px 1px 5px #2e0ee42b;
+    box-shadow: 1px 1px 5px;
     border-radius: 5px;
     padding: 10px;
-    color: blue;
+    color: black;
 }
 
 div > div > button.button-style{
-    color: blue;
+    color: black;
     box-align:center;
 }

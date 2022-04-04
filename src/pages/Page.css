@@ -1,0 +1,28 @@
+div > div > div.div-style{
+    /* background-color: grey;  */
+    color: black;
+}
+
+.form-btn{
+    background-color: black;
+    color: white;
+    width: 150px;
+}
+
+.elem-group {
+    text-align: left;
+    width: fit-content;
+    background-color: grey;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 100%;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 150px 400px;
+    grid-gap: 10px;
+    background-color: grey;
+    color: gray;
+  }

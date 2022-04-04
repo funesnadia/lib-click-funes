@@ -1,11 +1,11 @@
 .App {
-  text-align: center;
-}
+
+    width: 1200px;
+
+  /* text-align: center; */
+} 
 
 .img-Header {
   height: 40vmin;
   pointer-events: none;
 }
-  
-  
-

@@ -1,21 +1,41 @@
-import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// estilos
+import './App.css';
+
+//componentes
+import NavBar from './components/NavBar/NavBar';
+
+//pages
+import HomePage from './pages/Home';
+import DetailPage from './pages/Detail';
+import ContactPage from './pages/Contact';
+import NotFoundPage from './pages/NotFound';
+import NewsPage from './pages/News';
+import UsPage from './pages/Us';
+import { Container } from '@mui/material';
 
 function App() {
-  const [totCart, setTotCart] = useState(0);
-  const total = (count) => {
-    setTotCart(totCart + count)
-  }
+  // const [totCart, setTotCart] = useState(0);
+  // const total = (count) => {
+  //   setTotCart(totCart + count)
+  // }
   return (
-    <div className='App'>
-      <NavBar totCart={totCart} />
-      <ItemListContainer titulo='Productos' total={total} />
-      <ItemDetailContainer />
-    </div>
+    <Container className='App'>
+      <BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route path='/'             element={<HomePage />} />
+          <Route path='/categoria/:category' element={<HomePage />} /> 
+          <Route path='/productos/:id' element={<DetailPage />} />
+          <Route path='/contact'      element={<ContactPage />} />
+          <Route path='/us'           element={<UsPage/>} />
+          <Route path='/news'         element={<NewsPage />} />
+          <Route path='*'             element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Container>
   );
 }
-
 export default App;

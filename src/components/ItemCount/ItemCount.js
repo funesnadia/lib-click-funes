@@ -20,7 +20,7 @@ export default function ItemCount(props) {
   }
 
   return (
-    <div className='div-style' >
+    <div>
       <button className='btn-style' onClick={removeCount}> - </button>
       {count}
       <button className='btn-style' onClick={addCount}> + </button>

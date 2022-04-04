@@ -3,8 +3,38 @@
     border: 1px solid #ababab;
     margin-top: 1%;
     margin-left: 1%;
-    box-shadow: 1px 1px 5px #2e0ee42b;
+    box-shadow: 1px 1px 5px;
     border-radius: 5px;
     padding: 10px;
-    color: blue;
+    color: black;
+  }
+
+  div > div > div > div.columna2 {
+    margin-top: 30px;
+    float: left;
+    width: fit-content;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 2%;
+  }
+
+  div > div > div.columna1 {
+    width: fit-content;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 2%;
+  }
+
+  .product-content {
+    display: table-row;
+    background-color:gray;
+  }
+
+  .product-container {
+    border-top: 30px;
+    border-style: ridge;
+    display: table;
+    text-align: center;
+    width: 50%;
+    padding: 2%;
   }

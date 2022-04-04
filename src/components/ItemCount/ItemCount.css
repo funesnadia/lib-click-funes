@@ -1,16 +1,12 @@
-div > div-style{
-    color: blue;
-    box-align:center;
-}
-
 div > div > button.button-style{
-    color: blue;
+    text-decoration: none;
+    color: black;
     box-align:center;
     font-size: 18px;
 }
 
 div > button.btn-style{
-    color: blue;
+    color: black;
     font-size: 15px;
     border-radius: 4px;
     width: 20%;   
