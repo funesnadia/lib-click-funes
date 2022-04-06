@@ -6,6 +6,7 @@ import './App.css';
 
 //componentes
 import NavBar from './components/NavBar/NavBar';
+import { Container } from '@mui/material';
 
 //pages
 import HomePage from './pages/Home';
@@ -14,7 +15,8 @@ import ContactPage from './pages/Contact';
 import NotFoundPage from './pages/NotFound';
 import NewsPage from './pages/News';
 import UsPage from './pages/Us';
-import { Container } from '@mui/material';
+import CartPage from './pages/Cart';
+
 
 function App() {
   // const [totCart, setTotCart] = useState(0);
@@ -32,6 +34,7 @@ function App() {
           <Route path='/contact'      element={<ContactPage />} />
           <Route path='/us'           element={<UsPage/>} />
           <Route path='/news'         element={<NewsPage />} />
+          <Route path='/cart'         element={<CartPage />} />
           <Route path='*'             element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
