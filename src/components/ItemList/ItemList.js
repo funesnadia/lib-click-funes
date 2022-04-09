@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
+import CircularProgress from '@mui/material/CircularProgress'; 
 
 //estilos
 import './ItemList.css';
@@ -50,6 +51,6 @@ export default function ItemList({ titulo, category = 'all' }) {
                 (products.length > 0) ? products.map((product) => {
                     return (<Item data={product} key={product.id}></Item>)
                 })
-                    : <p>Cargando productos...</p>}
+                    : <CircularProgress/>}
         </Container>)
 }

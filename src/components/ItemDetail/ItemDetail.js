@@ -1,12 +1,14 @@
 import { Container } from "@mui/material";
-import React, { useState }  from "react";
+import React, { useState, useContext}  from "react";
 import './ItemDetail.css';
 import { useNavigate } from 'react-router-dom';
 import ItemCount from "../ItemCount/ItemCount";
+import CartContext from "../../context/CartContext";
 
 export default function ItemDetail({ data }) {
     const { titulo, precio, img, stock, initial = 1} = data
     const [cantCompra, setCantCompra] = useState(0);
+    const {cartProducts, addProductToCart} = useContext(CartContext);
 
     const navigate = useNavigate();
     const handleLogoClick = () => {
@@ -15,6 +17,8 @@ export default function ItemDetail({ data }) {
     const onAdd = (qty) => {
         alert(`Agregaste ${qty} productos`)
         setCantCompra(qty)
+        addProductToCart(data, qty)
+        console.log(cartProducts)
     }
     return (
         <Container>

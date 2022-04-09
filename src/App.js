@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 
 // estilos
 import './App.css';
@@ -25,19 +26,21 @@ function App() {
   // }
   return (
     <Container className='App'>
-      <BrowserRouter>
-        <NavBar/>
-        <Routes>
-          <Route path='/'             element={<HomePage />} />
-          <Route path='/categoria/:category' element={<HomePage />} /> 
-          <Route path='/productos/:id' element={<DetailPage />} />
-          <Route path='/contact'      element={<ContactPage />} />
-          <Route path='/us'           element={<UsPage/>} />
-          <Route path='/news'         element={<NewsPage />} />
-          <Route path='/cart'         element={<CartPage />} />
-          <Route path='*'             element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/categoria/:category' element={<HomePage />} />
+            <Route path='/productos/:id' element={<DetailPage />} />
+            <Route path='/contact' element={<ContactPage />} />
+            <Route path='/us' element={<UsPage />} />
+            <Route path='/news' element={<NewsPage />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </Container>
   );
 }
