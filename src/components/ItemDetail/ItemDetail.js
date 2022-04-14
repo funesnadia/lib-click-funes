@@ -15,10 +15,8 @@ export default function ItemDetail({ data }) {
         navigate(`/cart`)
     }
     const onAdd = (qty) => {
-        alert(`Agregaste ${qty} productos`)
         setCantCompra(qty)
         addProductToCart(data, qty)
-        console.log(cartProducts)
     }
     return (
         <Container>

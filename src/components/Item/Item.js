@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Item.css';
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
+import CartContext from "../../context/CartContext";
 
 export default function Item({ data }) {
 
     const { titulo, marca, precio, stock, initial, img, id } = data;
+    const {cartProducts, addProductToCart} = useContext(CartContext);
+
     const onAdd = (qty) => {
-        alert(`Agregaste ${qty} productos`)
+        addProductToCart(data, qty)
     }
     return (
         <div className="card-estyle">

@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './CartWidget.css';
 import CartContext from '../../context/CartContext';
-import { Divider } from '@mui/material';
+import { Container, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 export default function CartWidget() {
-    const { cartProducts, deleteProduct } = useContext(CartContext)
+    const { cartProducts, deleteProduct, amount } = useContext(CartContext)
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -21,8 +21,10 @@ export default function CartWidget() {
     const handleClose = () => {
       setAnchorEl(null);
     };
-
+    
     return (
+        amount() > 0
+        &&
         <IconButton aria-label="Agregar al carrito" > 
             <AddShoppingCartIcon onClick={handleClick}
                 size="small"
@@ -31,7 +33,7 @@ export default function CartWidget() {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
             />
-            <p>{cartProducts.length}</p>
+            <p>{amount()}</p>
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
@@ -41,7 +43,7 @@ export default function CartWidget() {
                 PaperProps={{
                 elevation: 0,
                 sx: {
-                    overflow: 'visible',
+                    overflow: 'scroll',
                     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                     mt: 1.5,
                     '& .MuiAvatar-root': {
@@ -79,9 +81,9 @@ export default function CartWidget() {
                                 <p>{cartProduct.product.titulo}</p>
                                 <span>$ {cartProduct.product.precio}</span>
                             </div>
-                            {/* <div>
-                                <DeleteIcon onClick={deleteProduct(cartProduct.product.id)}/>
-                            </div> */}
+                            <div>
+                                <DeleteIcon onClick={() => {deleteProduct(cartProduct.product.id)}} />
+                            </div>
                         </MenuItem>
                     )
                 })}

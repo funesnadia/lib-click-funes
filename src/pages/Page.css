@@ -26,3 +26,17 @@ div > div > div.div-style{
     background-color: grey;
     color: gray;
   }
+
+.button-style {
+    text-decoration: none;
+    color: black;
+    box-align:center;
+}
+
+.MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1ygcj2i-MuiTableCell-root {
+    font-weight: bold;
+  }
+
+  .MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root {
+    font-weight: bold;
+  }
