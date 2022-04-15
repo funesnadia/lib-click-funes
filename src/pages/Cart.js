@@ -10,7 +10,6 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CartContext from "../context/CartContext";
 import { Link } from 'react-router-dom';
-import { Button } from 'bootstrap';
 
 
 const CartPage = () => {
@@ -57,7 +56,7 @@ const CartPage = () => {
                                     <TableCell align="right">{cartProduct.product.marca}</TableCell>
                                     <TableCell align="right">{cartProduct.count}</TableCell>
                                     <TableCell align="right">{(cartProduct.product.precio * cartProduct.count)}</TableCell>
-                                    <TableCell align="right">{<DeleteIcon onClick={() => {deleteProduct(cartProduct.product.id) }}></DeleteIcon>} 
+                                    <TableCell align="right">{<DeleteIcon onClick={() => { deleteProduct(cartProduct.product.id) }}></DeleteIcon>}
                                     </TableCell>
                                 </TableRow>
 
@@ -65,8 +64,8 @@ const CartPage = () => {
                         </TableBody>
                     </Table>
                     <h3>Cantidad Total: {amount()}</h3>
-                    <h3>Monto    Total: {totAmount()}</h3>
-                    <button className='button-style' onClick={() => {resetProducts()}}>Vaciar el carrito</button>
+                    <h3>Monto    Total: ${totAmount()}</h3>
+                    <button className='button-style' onClick={() => { resetProducts() }}>Vaciar el carrito</button>
                 </TableContainer>
             }
         </div>

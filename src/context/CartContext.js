@@ -7,8 +7,6 @@ const CartProvider = ({ children }) => {
 
     const addProductToCart = (product, qty) => {
         let value = { count: qty, product: product }
-        // let exist = cartProducts.find(cartProduct => cartProduct.product.id == product.id)
-        // !exist && setCartProducts(cartProducts => [...cartProducts, value])
         if (isInCart(product.id)) {
 
             const prod = cartProducts.find(cartProduct => cartProduct.product.id == product.id);

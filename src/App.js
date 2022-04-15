@@ -20,10 +20,6 @@ import CartPage from './pages/Cart';
 
 
 function App() {
-  // const [totCart, setTotCart] = useState(0);
-  // const total = (count) => {
-  //   setTotCart(totCart + count)
-  // }
   return (
     <Container className='App'>
       <CartProvider>

@@ -1,34 +1,47 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
-import CircularProgress from '@mui/material/CircularProgress'; 
+import CircularProgress from '@mui/material/CircularProgress';
 
 //estilos
 import './ItemList.css';
 
 //utils
-import mockProducts from "../../Utils/mockProducts";
 import { Container } from "@mui/material";
+
+//db
+import db from '../../firebase'
+import { collection, getDocs} from 'firebase/firestore'
+
 
 export default function ItemList({ titulo, category = 'all' }) {
     const [products, setProducts] = useState([])
+    const [loading , setLoading] = useState(true)
 
-    useEffect(() => {
-        setProducts([]);
-        getProducts().then((items) => {
-            findProductByCategory(items, category)
+    useEffect( () => {
+        setProducts([])
+        setLoading(true)
+        getProducts().then( (productos) => {
+            setLoading(false)
+            category ? findProductByCategory(productos, category) : setProducts(productos)
         })
     }, [category])
 
-    const getProducts = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                return resolve(mockProducts)
-            }, 2000);
-        });
+    const getProducts = async () => {
+        const itemsCollection = collection(db, 'products')
+        const productosSnapshot = await getDocs(itemsCollection)
+        const productList = productosSnapshot.docs.map(
+            (doc) => {
+                let product = doc.data()
+                product.id = doc.id
+                return product
+            }
+        )
+        return productList
+
     }
 
-    const findProductByCategory = (products, category) => {
-        if (category == 'all') {
+    const findProductByCategory = (products, category) => {  
+        if (category === 'all') {
             setProducts([])
             return setProducts(products)
         }
@@ -42,8 +55,6 @@ export default function ItemList({ titulo, category = 'all' }) {
         }
     }
 
-
-
     return (
         <Container>
             <h2> {titulo}</h2>
@@ -51,6 +62,6 @@ export default function ItemList({ titulo, category = 'all' }) {
                 (products.length > 0) ? products.map((product) => {
                     return (<Item data={product} key={product.id}></Item>)
                 })
-                    : <CircularProgress/>}
+                    : <CircularProgress />}
         </Container>)
 }
