@@ -5,23 +5,22 @@ import { useEffect, useState } from "react";
 
 //db
 import db from "../firebase";
-import { collection, getDocs} from 'firebase/firestore'
+import { doc, getDoc} from 'firebase/firestore'
 
 const DetailPage =  () => {
     const {id} = useParams();
     const [product, setProduct] = useState({})
 
-    const filterProduct = async (id) => {
-        const itemsCollection = collection(db, 'products')
-        const productosSnapshot = await getDocs(itemsCollection)
-        const product = productosSnapshot.docs.find(doc => doc.id === id)
-        let prod= product.data()
-        prod.id = product.id
+    const filterProduct = async () => {
+        const docRef = doc (db, 'products',id)
+        const docSnap = await getDoc(docRef)
+        let prod= docSnap.data()
+        prod.id = docSnap.id
         setProduct(prod)
     }
 
     useEffect( () => {
-        filterProduct(id)
+        filterProduct()
     }, [id])
 
     return(

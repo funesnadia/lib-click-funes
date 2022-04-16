@@ -9,7 +9,7 @@ import './ItemList.css';
 import { Container } from "@mui/material";
 
 //db
-import db from '../../firebase'
+import db from "../../firebase";
 import { collection, getDocs} from 'firebase/firestore'
 
 

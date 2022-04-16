@@ -1,5 +1,4 @@
 div > div > div.div-style{
-    /* background-color: grey;  */
     color: black;
 }
 
@@ -39,4 +38,8 @@ div > div > div.div-style{
 
   .MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root {
     font-weight: bold;
+  }
+
+  .tot{
+    text-align: end;
   }
