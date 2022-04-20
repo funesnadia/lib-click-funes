@@ -26,10 +26,12 @@ div > div > div.div-style{
     color: gray;
   }
 
-.button-style {
+.button-st {
     text-decoration: none;
     color: black;
-    box-align:center;
+    padding: 10px;
+    font-size: medium;
+    /* box-align:center; */
 }
 
 .MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1ygcj2i-MuiTableCell-root {
@@ -43,3 +45,12 @@ div > div > div.div-style{
   .tot{
     text-align: end;
   }
+
+  .div{
+  text-align: end;
+  }
+
+  .div-e{
+    text-align: center ;
+    color: black;
+    }

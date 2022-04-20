@@ -12,7 +12,8 @@ import CartContext from "../context/CartContext";
 import { Link } from 'react-router-dom';
 import ModalCustom from '../components/Modal/Modal';
 import db from '../firebase';
-import { collection, addDoc} from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
+import '../pages/Page.css';
 
 
 const CartPage = () => {
@@ -33,7 +34,8 @@ const CartPage = () => {
                     price: cartProduct.product.precio
                 }
             }),
-            total: totAmount
+            date: 0,
+            total: totAmount()
         }
     )
     const [successOrder, setSuccessOrder] = useState()
@@ -42,11 +44,13 @@ const CartPage = () => {
         e.preventDefault()
         let prevOrder = {
             ...order,
-            buyer: formData
+            buyer: formData,
+            date : getCurrentDate()
         }
         setOrder({
             ...order,
-            buyer: formData
+            buyer: formData,
+            date : getCurrentDate()
         })
         pushOrder(prevOrder)
     }
@@ -69,6 +73,16 @@ const CartPage = () => {
         })
     }
 
+    const getCurrentDate = (separator='') => {
+
+        let newDate = new Date()
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        
+        return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+    }
+
 
     return (
         <div>
@@ -78,7 +92,7 @@ const CartPage = () => {
                 <div>
                     <h2>No hay items en tu carrito...</h2>
                     <Link to='/'>
-                        <button className='button-style'>Continuar comprando</button>
+                        <button className='button-st'>Continuar comprando</button>
                     </Link>
                 </div>
             }
@@ -121,44 +135,59 @@ const CartPage = () => {
                     </Table>
                     <h3 className='tot'>Cantidad Total: {amount()}</h3>
                     <h3 className='tot'>Monto    Total: ${totAmount()}</h3>
-                    <button className='button-style' onClick={() => { resetProducts() }}>Vaciar el carrito</button>
-                    {/* <div>
-                        <button className='button-style' onClick={() => setOpenModal(true)}>Completar Compra</button>
-                    </div> */}
+                    <button className='button-st' onClick={() => { resetProducts() }}>Vaciar el carrito</button>
+                    <div className='div'>
+                        <button className='button-st' onClick={() => setOpenModal(true)}>Completar Compra</button>
+                    </div>
                 </TableContainer>
             }
-            {/* {
+            {
                 <ModalCustom handleClose={() => setOpenModal(false)} open={openModal}>
 
                     {successOrder ? (
                         <div>
-                            <h3>Orden generada correctamente</h3>
-                            <p>Su numero de orden es: {successOrder}</p>
-                            <button>Volver a Inicio</button>
+                            <h2>Orden generada correctamente</h2>
+                            <h3>Su numero de orden es: {successOrder}</h3>
+                            <div className='div-e'>
+                                <Link to='/'>
+                                    <button className='button-st' onClick={() => { resetProducts() }}>Volver a Inicio</button>
+                                </Link>
+                            </div>
                         </div>
                     ) : (
-                        <>
+                        <div>
                             <h2>Formulario Usuario</h2>
                             <form onSubmit={handleSubmit}>
-                                <input type="text" name='name' placeholder='Nombre'
-                                    onChange={handleChange}
-                                    value={formData.name}
-                                />
-                                <input type="number" name='phone' placeholder='Telefono'
-                                    onChange={handleChange}
-                                    value={formData.phone}
-                                />
-                                <input type="mail" name='email' placeholder='mail'
-                                    onChange={handleChange}
-                                    value={formData.email}
-                                />
-                                <button type="submit">Enviar</button>
+                                <div>
+                                    <input type="text" name='name' placeholder='Apeliido y Nombre'
+                                        onChange={handleChange}
+                                        value={formData.name}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <input type="number" name='phone' placeholder='Telefono'
+                                        onChange={handleChange}
+                                        value={formData.phone}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <input type="mail" name='email' placeholder='mail'
+                                        onChange={handleChange}
+                                        value={formData.email}
+                                        required
+                                    />
+                                </div>
+                                <div className='div-e'>
+                                    <button className='button-st' type="submit">Enviar</button>
+                                </div>
                             </form>
-                        </>
+                        </div>
                     )}
 
                 </ModalCustom>
-            } */}
+            }
         </div>
 
     )
