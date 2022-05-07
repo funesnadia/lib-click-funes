@@ -3,9 +3,12 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+
 import { Link } from 'react-router-dom';
+
 import './MenuPopupState.css'
 
+//Menu de fucnionalidades principales
 export default function MenuPopupState() {
     return (
         <PopupState variant='popper' popupId="demo-popup-menu">

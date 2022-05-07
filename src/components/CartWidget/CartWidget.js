@@ -1,19 +1,23 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import './CartWidget.css';
-import CartContext from '../../context/CartContext';
-import { Container, Divider } from '@mui/material';
+import { Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
 import { Link } from 'react-router-dom';
 
+import CartContext from '../../context/CartContext';
+
+import './CartWidget.css';
+
+//para la visualizacion previa del carrito de compras
 export default function CartWidget() {
     const { cartProducts, deleteProduct, amount } = useContext(CartContext)
 
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -23,12 +27,12 @@ export default function CartWidget() {
     };
     
     return (
-        amount() > 0
+        (amount() > 0)
         &&
         <IconButton aria-label="Agregar al carrito" > 
             <AddShoppingCartIcon onClick={handleClick}
                 size="small"
-                sx={{ ml: 2 }}
+                sx={{ ml: 1}}
                 aria-controls={open ? 'account-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
@@ -75,7 +79,7 @@ export default function CartWidget() {
                     return(
                         <MenuItem key={cartProduct.product.id}>
                             <div>
-                                <img src={`./${cartProduct.product.img}`} /> 
+                                <img src={`./${cartProduct.product.img}`} alt="Cart."/> 
                             </div>
                             <div>
                                 <p>{cartProduct.product.titulo}</p>
@@ -91,7 +95,7 @@ export default function CartWidget() {
                 <div>
                     <Button className='btn'><Link to="/cart">Terminar la compra</Link></Button>
                 </div>
-            </Menu>
+            </Menu>        
         </IconButton>
     );
 

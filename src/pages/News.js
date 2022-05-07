@@ -1,3 +1,4 @@
+// muestra las novedades del e-commerce
 const NewsPage =  () => {
     return(
         <div className="div-style">

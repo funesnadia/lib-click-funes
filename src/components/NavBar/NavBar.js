@@ -1,25 +1,27 @@
 import CartWidget from '../CartWidget/CartWidget';
-import { useNavigate} from 'react-router-dom';
-
+import { Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import MenuPopupState from '../MenuPopupState/MenuPopupState';
+import AccountMenu from '../AccountMenu/AccountMenu';
 
 // estilos
 import './NavBar.css';
-import { Container } from '@mui/material';
 
+//barra de navegacion
 function NavBar() {
     const navigate = useNavigate();
     const handleLogoClick = () => {
         navigate(`/`)
     }
+
     return (
         <Container className='nav-style'>
-                <img src="../imgLib.jpg" onClick={handleLogoClick} />
+            <img src="../imgLib.jpg" onClick={handleLogoClick} alt="logo" />
             <MenuPopupState />
             <CartWidget />
-        </Container>
+            <AccountMenu />
+        </Container >
     );
-
 }
 
 export default NavBar;

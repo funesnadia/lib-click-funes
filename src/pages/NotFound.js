@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 
+// muestra error de pagina no encontrada
 const NotFoundPage = () => {
     return(
         <Container>

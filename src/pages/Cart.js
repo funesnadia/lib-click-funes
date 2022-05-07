@@ -1,5 +1,3 @@
-
-import { useContext, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,22 +6,34 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CartContext from "../context/CartContext";
-import { Link } from 'react-router-dom';
 import ModalCustom from '../components/Modal/Modal';
+import { useContext, useState, useEffect } from 'react';
+import CartContext from "../context/CartContext";
+import UserContext from '../context/UserContext';
+import { Link } from 'react-router-dom';
+// db
 import db from '../firebase';
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, updateDoc } from 'firebase/firestore'
 import '../pages/Page.css';
 
-
+// muestra el carrito de productos para completar la compra generando un nro de orden.
+// se realiza actualizacion de stock
 const CartPage = () => {
     const { cartProducts, deleteProduct, resetProducts, totAmount, amount } = useContext(CartContext)
+    const { user } = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
         email: '',
     })
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            email: user.email
+        })
+    }, [user.email])
+
     const [order, setOrder] = useState(
         {
             buyer: formData,
@@ -45,23 +55,29 @@ const CartPage = () => {
         let prevOrder = {
             ...order,
             buyer: formData,
-            date : getCurrentDate()
+            date: getCurrentDate()
         }
         setOrder({
             ...order,
             buyer: formData,
-            date : getCurrentDate()
+            date: getCurrentDate()
         })
         pushOrder(prevOrder)
+        updateStock()
     }
 
     const pushOrder = async (prevOrder) => {
         const orderFirebase = collection(db, 'ordenes')
-        console.log("prevOrder", prevOrder)
         const orderDoc = await addDoc(orderFirebase, prevOrder)
-        console.log("orden generada: ", orderDoc.id)
         setSuccessOrder(orderDoc.id)
+    }
 
+    const updateStock = () => {
+        cartProducts.map(async (product) => {
+            const docRef = doc(db, 'products', product.product.id)
+            const stockNew = product.product.stock - product.count
+            await updateDoc(docRef, { stock: stockNew });
+        })
     }
 
     const handleChange = (e) => {
@@ -73,22 +89,18 @@ const CartPage = () => {
         })
     }
 
-    const getCurrentDate = (separator='') => {
-
+    const getCurrentDate = (separator = '') => {
         let newDate = new Date()
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let year = newDate.getFullYear();
-        
-        return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+        return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date}`
     }
-
 
     return (
         <div>
             {
-                (cartProducts.length === 0)
-                &&
+                (cartProducts.length === 0) &&
                 <div>
                     <h2>No hay items en tu carrito...</h2>
                     <Link to='/'>
@@ -114,10 +126,9 @@ const CartPage = () => {
                         <TableBody>
                             {cartProducts.map((cartProduct) => (
                                 <TableRow key={cartProduct.product.id}
-                                // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row">
-                                        {<img src={cartProduct.product.img}></img>}
+                                        {<img src={cartProduct.product.img} alt='imgProd'></img>}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {cartProduct.product.titulo}
@@ -158,8 +169,15 @@ const CartPage = () => {
                         <div>
                             <h2>Formulario Usuario</h2>
                             <form onSubmit={handleSubmit}>
+                                {
+                                    (user.email !== '') &&
+                                    <div>
+                                        <p onChange={handleChange}
+                                            value={user.email}>Email logueado: {user.email}</p>
+                                    </div>
+                                }
                                 <div>
-                                    <input type="text" name='name' placeholder='Apeliido y Nombre'
+                                    <input type="text" name='name' placeholder='Apellido y Nombre'
                                         onChange={handleChange}
                                         value={formData.name}
                                         required
@@ -172,26 +190,27 @@ const CartPage = () => {
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <input type="mail" name='email' placeholder='mail'
-                                        onChange={handleChange}
-                                        value={formData.email}
-                                        required
-                                    />
-                                </div>
+                                {
+                                    (user.email === '') &&
+                                    < div >
+                                        <input type="mail" name='email' placeholder='mail'
+                                            onChange={handleChange}
+                                            value={formData.email}
+                                            required
+                                        />
+                                    </div>
+                                }
                                 <div className='div-e'>
                                     <button className='button-st' type="submit">Enviar</button>
                                 </div>
                             </form>
                         </div>
-                    )}
-
-                </ModalCustom>
+                    )
+                    }
+                </ModalCustom >
             }
-        </div>
-
+        </div >
     )
-
 }
 
 export default CartPage;

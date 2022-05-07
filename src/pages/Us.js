@@ -1,6 +1,7 @@
 // estilos
 import './Page.css';
 
+//muestra la pagina Nosotros del e-commerce
 const UsPage =  () => {
     return(
         <div className="div-style">

@@ -1,13 +1,17 @@
 import React, {useContext} from "react";
-import './Item.css';
 import ItemCount from "../ItemCount/ItemCount";
+
 import { Link } from "react-router-dom";
+
 import CartContext from "../../context/CartContext";
 
+import './Item.css';
+
+//detalle del producto
 export default function Item({ data }) {
 
-    const { titulo, marca, precio, stock, initial, img, id } = data;
-    const {cartProducts, addProductToCart} = useContext(CartContext);
+    const { titulo, marca, stock, initial, img, id } = data;
+    const {addProductToCart} = useContext(CartContext);
 
     const onAdd = (qty) => {
         addProductToCart(data, qty)
@@ -15,10 +19,9 @@ export default function Item({ data }) {
     return (
         <div className="card-estyle">
             <div className='img-style'>
-                <img src={img} />
+                <img src={img} alt='item'/>
             </div>
             <h3>{titulo}</h3>
-            {/* <p>Precio: $ {precio}</p> */}
             <p>Marca: {marca}</p>
             <button className='button-style'>
                 <Link to={'/productos/' + id}>Ver Detalle</Link>

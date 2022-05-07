@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
 
+//para seleccionar cantidad del producto segun stock y agregarlo al carrito
 export default function ItemCount(props) {
 
   const { stock, initial, onAdd } = props;

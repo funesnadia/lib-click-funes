@@ -1,56 +1,55 @@
-div > div > div.div-style{
-    color: black;
+div>div>div.div-style {
+  color: black;
 }
 
-.form-btn{
-    background-color: black;
-    color: white;
-    width: 150px;
+.form-btn {
+  background-color: black;
+  color: white;
+  width: 150px;
 }
 
 .elem-group {
-    text-align: left;
-    width: fit-content;
-    background-color: grey;
-    color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    font-size: 100%;
+  text-align: left;
+  width: fit-content;
+  background-color: grey;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 100%;
 }
 
 .wrapper {
-    display: grid;
-    grid-template-columns: 150px 400px;
-    grid-gap: 10px;
-    background-color: grey;
-    color: gray;
-  }
+  display: grid;
+  grid-template-columns: 150px 400px;
+  grid-gap: 10px;
+  background-color: grey;
+  color: gray;
+}
 
 .button-st {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-    font-size: medium;
-    /* box-align:center; */
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  font-size: medium;
 }
 
 .MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1ygcj2i-MuiTableCell-root {
-    font-weight: bold;
-  }
+  font-weight: bold;
+}
 
-  .MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root {
-    font-weight: bold;
-  }
+.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root {
+  font-weight: bold;
+}
 
-  .tot{
-    text-align: end;
-  }
-
-  .div{
+.tot {
   text-align: end;
-  }
+}
 
-  .div-e{
-    text-align: center ;
-    color: black;
-    }
+.div {
+  text-align: end;
+}
+
+.div-e {
+  text-align: center;
+  color: black;
+}

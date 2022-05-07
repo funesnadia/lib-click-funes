@@ -10,17 +10,17 @@ import { Container } from "@mui/material";
 
 //db
 import db from "../../firebase";
-import { collection, getDocs} from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 
-
+//listado de productos
 export default function ItemList({ titulo, category = 'all' }) {
     const [products, setProducts] = useState([])
-    const [loading , setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
-    useEffect( () => {
+    useEffect(() => {
         setProducts([])
         setLoading(true)
-        getProducts().then( (productos) => {
+        getProducts().then((productos) => {
             setLoading(false)
             category ? findProductByCategory(productos, category) : setProducts(productos)
         })
@@ -40,16 +40,15 @@ export default function ItemList({ titulo, category = 'all' }) {
 
     }
 
-    const findProductByCategory = (products, category) => {  
+    const findProductByCategory = (products, category) => {
         if (category === 'all') {
             setProducts([])
             return setProducts(products)
         }
         else {
             products.map((product) => {
-                if (product.categoria === category) {
+                if (product.categoria === category)
                     return setProducts(products => [...products, product]);
-                }
             }
             )
         }

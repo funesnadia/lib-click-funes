@@ -28,7 +28,6 @@ const DetailPage =  () => {
             <ItemDetail data={product} />
         </Container>
     )
-
 }
 
 export default DetailPage;
